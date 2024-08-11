@@ -7,25 +7,24 @@ const initialGameBoard= [
 ];
 
 export default function GameBoard({ onSelectSquare, activePlayerSymbol }){
-	const [gameBoard, setGameBoard] = useState(initialGameBoard);
+	// const [gameBoard, setGameBoard] = useState(initialGameBoard);
 	
-	function handleSelectSquare(rowIndex, colIndex){
-		setGameBoard((prevGameBoard) =>{
-			// create copy of existing board in new array
-			// allows react to schedule update
-			// instead of changing underlying array in mem
-			const updatedBoard = 
-				[...prevGameBoard.map(innerArray => [...innerArray])];
-			// requires map due to nested array. 
-			// React will not make a new ind copy of
-			// inner arrays if map not used
+	// function handleSelectSquare(rowIndex, colIndex){
+	// 	setGameBoard((prevGameBoard) =>{
+	// 		// create copy of existing board in new array
+	// 		// allows react to schedule update
+	// 		// instead of changing underlying array in mem
+	// 		const updatedBoard = 
+	// 			[...prevGameBoard.map(innerArray => [...innerArray])];
+	// 		// requires map due to nested array. 
+	// 		// React will not make a new ind copy of
+	// 		// inner arrays if map not used
 
-			updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
-			return updatedBoard;
-		});
-		onSelectSquare();
-
-	}
+	// 		updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
+	// 		return updatedBoard;
+	// 	});
+	// 	onSelectSquare();
+	// }
 
 	return (
 		<ol id='game-board'>
