@@ -4,7 +4,21 @@ const initialGameBoard= [
 	[null, null, null]
 ];
 
-export default function GameBoard({ onSelectSquare}){
+export default function GameBoard({ onSelectSquare, turns}){
+	let gameBoard = initialGameBoard;
+
+	// if turns is empty, for loop wont execute
+	for (const turn of turns){
+		// pull square and player from array item via destructuring
+		const { square, player } = turn;
+		const { row, col } = square;
+
+		// gameBoard is derived state (computed from actual state)
+		// should try to manage as little state as needed
+		// and derive state when possible
+		gameBoard[row][col] = player;
+	}
+	
 	// const [gameBoard, setGameBoard] = useState(initialGameBoard);
 	
 	// function handleSelectSquare(rowIndex, colIndex){

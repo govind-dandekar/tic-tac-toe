@@ -12,7 +12,7 @@ function App() {
 
   const [activePlayer, setActivePlayer] = useState('X');
 
-  function handleSelectSquare(rowIndex, columnIndex){
+  function handleSelectSquare(rowIndex, colIndex){
     // since new state is dep on old state, pass anon fx
     // with old state
     setActivePlayer((curActivePlayer) => curActivePlayer === 'X' ? 'O' : 'X');
@@ -24,17 +24,18 @@ function App() {
       // and update currentPlayer if so
       // ensure there is at least one turn in array
       if (prevTurns.length > 0 && prevTurns[0].player === 'X') {
-        currentPlayer = 'O'
+        currentPlayer = 'O';
       }
 
       // immutable update;  use spread op on prevTurns
       const updatedTurns = [{ square: {
         row: rowIndex,
-        column: columnIndex
+        col: colIndex
       }, player: currentPlayer }, ...prevTurns]
-    });
-
-    return updatedTurns;
+    
+      console.log(updatedTurns);
+      return updatedTurns;
+    }); 
   }
     
   return (
@@ -54,9 +55,9 @@ function App() {
           </ol>
           <GameBoard 
             onSelectSquare={handleSelectSquare}
-            activePlayerSymbol={activePlayer}/>
+            turns={gameTurns}/>
         </div>
-        <Log />
+        <Log turns={gameTurns}/>
       </main>
     )
 }
